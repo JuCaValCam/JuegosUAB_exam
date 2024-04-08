@@ -51,4 +51,71 @@ rutas.delete('/eliminar/:id', async (req, res) =>{
     }
 });
 
+//Consultas
+
+//- Listar todos los juegos con la plataforma XBOX
+rutas.get('/juego-plataforma/:id', async (req, res) =>{
+    try {
+        console.log(req.params.id);
+        const juegosPlataforma = await JuegoModel.find({ plataforma: req.params.id});
+        res.json(juegosPlataforma);
+    }
+    catch(error){
+        res.status(404).json({mensaje: error.message});
+    }
+})
+
+//- Ordenar los juegos por precio de forma ascendente
+
+rutas.get('/ordenar-juego', async (req, res) =>{
+    try {
+        const juegosASC = await JuegoModel.find().sort({ preciobs: 1});
+        res.json(juegosASC);
+    }
+    catch(error){
+        res.status(404).json({mensaje: error.message});
+    }
+})
+
+//- Consultar una tarea especifica por Id
+
+rutas.get('/juego/:id', async (req, res) =>{
+    try {
+        console.log(req.params.id);
+        const juego = await JuegoModel.findById(req.params.id);
+        res.json(juego);
+    }
+    catch(error){
+        res.status(404).json({mensaje: error.message});
+    }
+})
+
+//- Eliminar todos los juegos por una categoria determinada determinada
+
+rutas.delete('/eliminar-categoria/:categoria', async (req, res) =>{
+    try {
+        console.log(req.params.categoria);
+        const categoria = req.params.categoria
+        const eliminarJuegos = await JuegoModel.deleteMany({categoria});
+        res.json({mensaje: 'Juegos eliminados correctamente'});
+        
+    } catch(error){
+        res.status(400).json({mensaje: error.message});
+    }
+});
+
+//- Consultar el juego mas reciente anadido a la base de datos
+
+rutas.get('/juego-reciente', async (req, res) =>{
+    try {
+        const tarea = await JuegoModel.findOne().sort({_id: -1});
+        res.json(tarea);
+    }
+    catch(error){
+        res.status(404).json({mensaje: error.message});
+    }
+});
+
 module.exports = rutas;
+
+

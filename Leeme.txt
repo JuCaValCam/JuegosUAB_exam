@@ -1,0 +1,1 @@
+Desarrollar una app de venta de juegos de diferentes plataformas, un listado.
