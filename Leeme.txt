@@ -1,1 +1,4 @@
-Desarrollar una app de venta de juegos de diferentes plataformas, un listado.
+Examen 2do. parcial modalidad 2da opción
+login ok
+atributos al modelo principal a 6. ok
+10 consultas avanzadas ok.
