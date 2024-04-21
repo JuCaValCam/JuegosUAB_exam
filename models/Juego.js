@@ -6,6 +6,7 @@ const juegoSchema = new mongoose.Schema({
     descripcion : String,
     categoria : String,
     preciobs : Number,
+    almacen : Number,
 })
 
 const JuegoModel = mongoose.model('Juego',juegoSchema,'juego');
